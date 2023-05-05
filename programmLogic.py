@@ -1,11 +1,10 @@
 from collections import defaultdict
-import random
-import numpy as np
+
 import torch
 
 
 def build_bigram(filename):
-
+        # читаем переданный файл с именами и создаем биграммы 
         with open(filename ,"r")as file:
                 names =[line.strip() for line in file] 
 
@@ -24,16 +23,10 @@ def create_new_name(all_bigrams):
     name = ""
     current_letter = "^"
     bigram_probabilities_list = {}
-
+    
+    # логика для нового имени
     while current_letter != '$':
-        # possible_bigrams = [bigram for bigram in all_bigrams.keys() if bigram.startswith(current_letter)]
-        # next_bigram = np.random.choice(possible_bigrams)
-        # bigram_probabilities_list[next_bigram] = all_bigrams[next_bigram]
-        # name += str(next_bigram[1])
-        # current_letter = str(next_bigram[1])
 
-
-        # 
         possible_bigrams = [bigram for bigram in all_bigrams.keys() if bigram.startswith(current_letter)]
         probabilities = torch.Tensor([all_bigrams[bigram] for bigram in possible_bigrams])
         probabilities /= probabilities.sum()
@@ -44,35 +37,12 @@ def create_new_name(all_bigrams):
         name += str(next_bigram[1])
         current_letter = str(next_bigram[1])
 
-
-
+    # все биграммы записываю в "bigram_probabilities_list", а также записываю полностью имя
     bigram_probabilities_list['current_name']= name[:-1]  
 
     return bigram_probabilities_list
 
 
 
-
-# test = defaultdict(int)
-# test["^s"]=1
-# test["sl"]=1
-# test["la"]=1
-# test["^v"]=1
-# test["va"]=1
-# test["a$"]=1 
-
-
-# name = ""
-# current_letter = "^"
-
-# while current_letter != '$':
-#         possible_bigrams = [bigram for bigram in test.keys() if bigram.startswith(current_letter)]
-#         bigram_probabilities_list = [test[bigram] for bigram in possible_bigrams]
-#         next_bigram = np.random.choice(possible_bigrams)
-#         print(next_bigram)
-#         name += str(next_bigram[1])
-#         current_letter = str(next_bigram[1])
-
-# print(name)
 
 

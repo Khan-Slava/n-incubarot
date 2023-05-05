@@ -51,6 +51,7 @@ def create_image():
     
     # Сохраняем изображение в формате PNG
     image.save(current_name+'.png', 'PNG')
+    messagebox.showinfo("Success", "Table image created!")
 
 
 
@@ -70,8 +71,8 @@ for r in range(6): root.rowconfigure(index=r, weight=1)
 generate_name_button = tk.Button(root, text="Generate Name", command=generate_name)
 generate_name_button.grid(row=0,column=0)
 
-# Создаем кнопку "Create" и привязываем ее к функции create_network
-create_button = tk.Button(root, text="Create", command=create_image)
+# Создаем кнопку "Create" и привязываем ее к функции create_image
+create_button = tk.Button(root, text="Create image", command=create_image)
 create_button.grid(row=0,column=1)
 
 # Создаем текстовое поле, где отображается текст с новым именем
