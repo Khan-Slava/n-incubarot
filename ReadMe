@@ -1,0 +1,7 @@
+использована версия python 3.11
+в терминале пишем:
+python.exe -m pip install --upgrade pip
+pip install torch
+
+работал в visual studio code.
+запускать main.py 
