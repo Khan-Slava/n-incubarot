@@ -2,6 +2,7 @@
 в терминале пишем:
 python.exe -m pip install --upgrade pip
 pip install torch
+pip install Pillow
 
 работал в visual studio code.
 запускать main.py 
